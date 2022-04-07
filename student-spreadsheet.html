@@ -1,0 +1,299 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Tasker: Student Task Spreadsheet</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+		<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
+	</head>
+	<body class="is-preload no-sidebar">
+		<div id="page-wrapper">
+			<!-- Header -->
+				<div id="header-wrapper">
+					<header id="header" class="container">
+						<!-- Logo -->
+							<div id="logo">
+								<h1><a href="index.html">Tasker</a></h1>
+								<span>DEMO PROTOTYPE</span>
+							</div>
+					</header>
+				</div>
+
+			<!-- Main -->
+				<div id="main-wrapper">
+					<div class="container">
+						<div id="content">
+							<!-- Content -->
+								<article>
+									<h1>MGG 620</h1>
+									<div class="container">										
+										<table class="table table-bordered" id="tasks-table">
+										</table>
+									</div>
+								</article>
+						</div>
+					</div>
+				</div>
+
+				<!-- Footer -->
+				<div id="footer-wrapper">
+					<footer id="footer" class="container">
+						<div class="row">
+							<div class="col-12">
+								<div id="copyright">
+									<ul class="menu">
+										<li>&copy; Copyright 2021 David Padilla & Jeanne Myers. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</footer>
+				</div>
+
+			</div>
+
+			<script>
+				var tasksObj = [
+					{
+						"number": 1,
+						"task": "Watch: Tech Tools", 
+						"status": "L",
+						"type": "L",
+						"due": "01/03/2022 6:00 p.m."
+					},
+					{
+						"number": 2,
+						"task": "Watch: Video Orientation", 
+						"status": "O",
+						"type": "L",
+						"due": "01/03/2022 6:00 p.m."
+					},
+					{
+						"number": 3,
+						"task": "Submit: Course Checklist", 
+						"status": "W",
+						"type": "D",
+						"due": "01/03/2022 6:00 p.m."
+					},
+					{
+						"number": 4,
+						"task": "Submit: TopHat Technology Checklist Questionnaire", 
+						"status": "W",
+						"type": "D",
+						"due": "01/03/2022 6:00 p.m."
+					},
+					{
+						"number": 5,
+						"task": "Submit: Student Profile Form", 
+						"status": "W",
+						"type": "N",
+						"due": "01/03/2022 6:00 p.m."
+					},
+					{
+						"number": 6,
+						"task": "Read: How Digital Leadership Is(n't) Different)", 
+						"status": "W",
+						"type": "D",
+						"due": "01/03/2022 6:00 p.m."
+					},
+					{
+						"number": 7,
+						"task": "Breakout Activity #1 (in-class)", 
+						"status": "W",
+						"type": "D",
+						"due": "01/03/2022 6:00 p.m."
+					},
+					{
+						"number": 8,
+						"task": "Submit: Discussion Post #1: Questions for J Parent", 
+						"status": "",
+						"type": "D",
+						"due": "01/05/2022 6:00 p.m."
+					},
+					{
+						"number": 9,
+						"task": "Submit: Flipgrid #1: Student Intro", 
+						"status": "",
+						"type": "D",
+						"due": "01/05/2022 6:00 p.m."
+					},
+					{
+						"number": 10,
+						"task": "Read: 5 Rules for Leading in a Digital World", 
+						"status": "",
+						"type": "D",
+						"due": "01/05/2022 6:00 p.m."
+					},
+					{
+						"number": 11,
+						"task": "Read: Case #1 Axel Springer (HBS)", 
+						"status": "",
+						"type": "D",
+						"due": "01/05/2022 6:00 p.m."
+					},
+					{
+						"number": 12,
+						"task": "Watch: Digital Leadership vs Digital Transformation", 
+						"status": "",
+						"type": "L",
+						"due": "01/05/2022 6:00 p.m."
+					},
+					{
+						"number": 13,
+						"task": "Watch: What a digital government looks like", 
+						"status": "",
+						"type": "L",
+						"due": "01/05/2022 6:00 p.m."
+					},
+					{
+						"number": 14,
+						"task": "Watch: How Estonia built a digital first government", 
+						"status": "",
+						"type": "L",
+						"due": "01/05/2022 6:00 p.m."
+					},
+					{
+						"number": 15,
+						"task": "Read: You're Going Digital! Now What", 
+						"status": "",
+						"type": "L",
+						"due": "01/05/2022 6:00 p.m."
+					},
+					{
+						"number": 16,
+						"task": "Read: CIO's Next Key Role - Change Agent", 
+						"status": "",
+						"type": "L",
+						"due": "01/05/2022 6:00 p.m."
+					},
+					{
+						"number": 17,
+						"task": "Watch: CarMax Interview with Shamin", 
+						"status": "",
+						"type": "L",
+						"due": "01/05/2022 6:00 p.m."
+					},
+					{
+						"number": 18,
+						"task": "Read: Ultimate Guide to Virtual Leadership", 
+						"status": "",
+						"type": "L",
+						"due": "01/07/2022 6:00 p.m."
+					},
+					{
+						"number": 19,
+						"task": "Read: 5 Ways to Improve Communication in Virtual Teams", 
+						"status": "",
+						"type": "L",
+						"due": "01/07/2022 6:00 p.m."
+					},
+					{
+						"number": 20,
+						"task": "Read: HR and IT - Forging new Partnerships to Drive Digital Transformation", 
+						"status": "",
+						"type": "L",
+						"due": "01/07/2022 6:00 p.m."
+					}
+					];
+					
+					var html = '<thead class="table-light"><tr>';
+					html += '<th scope="col" class="text-center">#</th><th scope="col" class="text-center">Type</th>';
+					html += '<th scope="col" class="text-center">Task</th><th scope="col" class="text-center">Due</th><th scope="col" class="text-center"></th>';
+					html += '</tr></thead><tbody>';
+					for ( var key in tasksObj ) {
+						if ( !tasksObj.hasOwnProperty(key) ) continue;
+						var questionId = "question" + tasksObj[key].number;
+						var rowId = "row" + tasksObj[key].number;
+						var rowClass = "";
+						if (tasksObj[key].status == "L") { rowClass= 'table-danger';}
+						else if (tasksObj[key].status == "O") { rowClass= 'table-success'; }
+						else if (tasksObj[key].status == "W") { rowClass= 'table-warning'; }
+						html += '<tr' + ' id="' + rowId + '"' +' class="' + rowClass + '" title="This task was completed late">';
+						html += '<td class="text-center">' + tasksObj[key].number;
+						html += '</td>';
+						if (tasksObj[key].type == "D" || tasksObj[key].type == "N") { html += '<td class="text-center"><i class="bi bi-pencil" title="Do"></i></td>'; }
+						else if (tasksObj[key].type == "L") { html += '<td class="text-center"><i class="bi bi-eye" title="Learn"></i></td>'; }
+						html += '<td class="text-start">';
+						if (tasksObj[key].status == "W") {
+							html += '<i class="bi bi-alarm"></i> ';
+						}
+						html += '<a href="http://www.buffalo.edu/" target="_blank">'; 
+						html +=	tasksObj[key].task;
+						html += '</a><div class="px-2 float-end" title="This task should take 1 hour"><i class="bi bi-clock"></i> 1 hour</div>';
+						html += '</td>';						
+						html += '<td class="text-center" title="Date/time due"><i class="bi bi-calendar-check" title="Date/time due"></i> ';
+						if (tasksObj[key].status == "W") { html += '<b>'; }
+						html += tasksObj[key].due;
+						if (tasksObj[key].status == "W") { html += '</b>'; }
+						html += '</td>';
+						
+						html += '<td class="text-center">';
+						if (tasksObj[key].type != "N") {
+							var checkInDisabled = "";
+							if (tasksObj[key].status == "O" || tasksObj[key].status == "L") { checkInDisabled = 'disabled'; }
+							var thisId = "check-in-call-" + tasksObj[key].number;
+							html += '<button' + ' id="' + thisId +'" ' + checkInDisabled + ' class="btn btn-primary" ' + 'type="button" ';
+							html += 'data-bs-toggle="collapse" data-bs-target="#' + questionId + '">';
+							html += '<i class="bi bi-check-circle"></i> Check in</button>';														
+							html += '</td>';
+						} else {
+							html += '<i class="bi bi-hand-thumbs-up" title="No need to check in for this task"></i>';
+						}
+																
+						html += '</tr>';
+						// Check question
+						var questionText = "What is the main idea of this unit?";
+						if (tasksObj[key].number % 2 == 0) { questionText = "What do the functions of planning, organizing, leading, and controlling represent?"; }
+						else if (tasksObj[key].number % 3 == 0) { questionText = "Which method of digital management would the author of this document support?"; }
+						
+						html += '<tr class="collapse" id="' + questionId + '"><td colspan="5">';
+						html += '<div><div class="card card-body"><form>';
+						html += '<div><b>Check question:</b><br />';
+						html += questionText;
+						html += '<div class="form-check"><input class="form-check-input" type="checkbox" value=""><label class="form-check-label" for="flexCheckChecked">Answer A</label></div>';
+						html += '<div class="form-check"><input class="form-check-input" type="checkbox" value=""><label class="form-check-label" for="flexCheckChecked">Answer B</label></div>';
+						html += '<div class="form-check"><input class="form-check-input" type="checkbox" value=""><label class="form-check-label" for="flexCheckChecked">Answer C</label></div>';
+						html += '</div>';
+						html += '<div><b>Was this unit of the course useful?</b><br />';
+						html += '<div class="form-check"><input class="form-check-input" type="radio" value=""><label class="form-check-label" for="flexCheckChecked">Yes</label></div>';
+						html += '<div class="form-check"><input class="form-check-input" type="radio" value=""><label class="form-check-label" for="flexCheckChecked">No</label></div>';
+						html += '<div>';								
+						html += '<div><b>Was the time estimate accurate?</b><br />';
+						html += '<div class="form-check"><input class="form-check-input" type="radio" value=""><label class="form-check-label" for="flexCheckChecked">Yes</label></div>';
+						html += '<div class="form-check"><input class="form-check-input" type="radio" value=""><label class="form-check-label" for="flexCheckChecked">No</label></div>';
+						html += '<div>';
+						html += '<div><b>Comments?</b><span style="font-size: small;" class="p-2"><i>100 characters max.</i></span><br /><input type="text" maxlength="100" size="55"></div>';
+						html += '<br />';
+
+						html += '<button type="button" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#'+ questionId + '">Cancel</button>';
+						html += '<span class="p-2"><button id="'+ tasksObj[key].number +'" type="button" class="btn btn-primary check-in-go" data-bs-toggle="collapse" data-bs-target="#' + questionId + '">Check In!</button></span>';
+						
+						html += '</form></div></div>';
+						html += '</td></tr>';
+					}
+					html += '</tbody>';
+	
+					document.getElementById('tasks-table').innerHTML = html;
+			</script>
+
+			<script>
+				$(".check-in-go").click(function() {
+					var t = $(this).attr('id');
+					var callingId = "#check-in-call-" + t;
+					var rowId = "row" + t;
+					$(callingId).prop("disabled",true);
+					$("#"+rowId).removeClass();
+					if (t % 3 == 0){
+						$("#"+rowId).addClass("table-danger");
+					} else {
+						$("#"+rowId).addClass("table-success");
+					}
+				});  
+			</script>
+	</body>
+</html>

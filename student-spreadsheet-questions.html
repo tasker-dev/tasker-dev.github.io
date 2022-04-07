@@ -1,0 +1,122 @@
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Open modal for @mdo</button>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat">Open modal for @fat</button>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="questionA" tabindex="-1" role="dialog" aria-labelledby="questionALabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="questionALabel">Check In!</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><i class="bi bi-x"></i></span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <b>Check question:</b>
+                    <br />
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dignissim consectetur pulvinar?
+                    <br />
+                    <input type="checkbox" id="a1" name="a1" value="Bike">
+                    <label for="a1"> All of them</label><br>
+                    <input type="checkbox" id="a2" name="a2" value="Car">
+                    <label for="a2"> Some of them</label><br>
+                    <input type="checkbox" id="a3" name="a3" value="Boat">
+                    <label for="a3"> None of them</label><br><br>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+  <table class="table table-light">
+    <thead>
+      <tr>
+        <!-- <th scope="col"> </th> -->
+        <th scope="col">Question</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <!-- <th scope="row">Check Q.</th> -->
+        <td>
+            <b>Check question:</b>
+            <br />
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dignissim consectetur pulvinar?
+            <br />
+            <input type="checkbox" id="a1" name="a1" value="Bike">
+            <label for="a1"> All of them</label><br>
+            <input type="checkbox" id="a2" name="a2" value="Car">
+            <label for="a2"> Some of them</label><br>
+            <input type="checkbox" id="a3" name="a3" value="Boat">
+            <label for="a3"> None of them</label><br><br>
+            
+        </td>
+        
+      </tr>
+      
+      <tr>
+        <!-- <th scope="row">Useful</th> -->
+        <td>Was this unit of the course useful?</td>
+        
+      </tr>
+      <tr>
+        <!-- <th scope="row">4</th> -->
+        <td>Was the time estimate accurate?</td>
+            <input type="radio" value="true"> Yes
+            <span style="padding-left: 5px;"><input type="radio" value="false"> No</span>		
+            
+      </tr>
+      <tr>
+          <td>
+                Comments?
+                <br />
+                <input type="text" maxlength="100" size="55">
+                <br />
+                <span style="font-size: small;"><i>100 characters max.</i></span>
+          </td>
+      </tr>
+    </tbody>
+  </table>
