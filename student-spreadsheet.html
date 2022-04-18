@@ -31,9 +31,18 @@
 							<!-- Content -->
 								<article>
 									<h1>MGG 620</h1>
-									<div class="container">										
+									<div class="container">	
+										<div class="form-check form-switch">
+											<input class="form-check-input" type="checkbox" role="switch" id="tableType" checked 
+												onchange="toggleTable()">
+											<label class="form-check-label" for="tableType">Expanded View</label>
+										  </div>
+										
 										<table class="table table-bordered" id="tasks-table">
 										</table>
+
+										<div id="tasks-table-clean" style="display: none;">
+										</div>
 									</div>
 								</article>
 						</div>
@@ -47,15 +56,29 @@
 							<div class="col-12">
 								<div id="copyright">
 									<ul class="menu">
-										<li>&copy; Copyright 2021 David Padilla & Jeanne Myers. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+										<li>&copy; Copyright 2021-2022 David Padilla & Jeanne Myers. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 									</ul>
 								</div>
 							</div>
 						</div>
 					</footer>
 				</div>
-
 			</div>
+
+			<script>
+				function toggleTable()
+				{
+					var toggleChecked = $('#' + "tableType").is(":checked")
+					if (toggleChecked) {
+						$('#tasks-table-clean').hide();
+						$('#tasks-table').show();
+					} else {
+						$('#tasks-table-clean').show();
+						$('#tasks-table').hide();
+					}
+
+				}
+			</script>
 
 			<script>
 				var tasksObj = [
@@ -279,6 +302,137 @@
 					html += '</tbody>';
 	
 					document.getElementById('tasks-table').innerHTML = html;
+
+					// Clean table
+					var html = '<div class="container">';
+					for ( var key in tasksObj ) {
+						if ( !tasksObj.hasOwnProperty(key) ) continue;
+						var questionId = "question" + tasksObj[key].number;
+						var rowId = "row" + tasksObj[key].number;
+						var rowClass = "";
+						var alertNumberStyle = "";
+
+						if (tasksObj[key].status == "L") { alertNumberStyle = "color: red;"; }
+
+						html += '<div class="row ' +  ' h-10">';
+							
+						html += '<div class="col my-auto" style="font-size: 1.75em; ' + alertNumberStyle + '">';
+						html +=  tasksObj[key].number;
+						html += '</div>'; // End col
+
+						html += '<div class="col-8 my-auto">';
+
+						if (tasksObj[key].type == "D" || tasksObj[key].type == "N") { 
+							html += '<span class="px-1" style="font-size: 0.5em;"><i class="bi bi-pencil" title="Do"></i> </span>'; 
+						}
+						else if (tasksObj[key].type == "L") { 
+							html += '<span class="px-1" style="font-size: 0.5em;"><i class="bi bi-eye" title="Learn"></i></span> '; 
+						}
+						html += '<a href="http://www.buffalo.edu/" target="_blank">' + tasksObj[key].task + '</a>';
+						html += '<br />';
+						if (tasksObj[key].type != "N") {
+							var checkInDisabled = "";
+							var checkInLabel = "Check In";
+							var checkInClass = "btn-primary";
+							if (tasksObj[key].status == "O" || tasksObj[key].status == "L") { 
+								checkInDisabled = 'disabled'; 
+								checkInLabel= "Done"; 
+								checkInClass = "btn-warning";
+							}
+							var thisId = "check-in-call-" + tasksObj[key].number;
+							html += '<div style="margin-top: 15px;">';
+							html += '<button' + ' id="' + thisId +'" ' + checkInDisabled + ' class="btn ' + checkInClass + '" ' + 'type="button" ';
+							html += 'data-bs-toggle="collapse" data-bs-target="#' + questionId + '">';
+							html += '<i class="bi bi-check-circle"></i> ' + checkInLabel + '</button>';	
+							html += '</div>';
+						} else {
+							html += '<i class="bi bi-hand-thumbs-up" title="No need to check in for this task"></i>';
+							html += ' No check-in for this task';
+						}
+						html += '</div>'; // End col
+
+						html += '<div class="col my-auto" style="font-size: 1em; ' + alertNumberStyle + '">';
+						html += ' <i class="bi bi-calendar-check" title="Date/time due"></i> Due:';
+						html +=  tasksObj[key].due;
+						html += '</div>'; // End col
+
+						html += '</div>'; // Row
+					}
+					html += '</div>'; // Container
+
+					
+					/* for ( var key in tasksObj ) {						
+						if (tasksObj[key].status == "L") { rowClass= 'table-danger';}
+						else if (tasksObj[key].status == "O") { rowClass= 'table-success'; }
+						else if (tasksObj[key].status == "W") { rowClass= 'table-warning'; }
+						html += '<tr' + ' id="' + rowId + '"' +' class="' + rowClass + '" title="This task was completed late">';
+						html += '<td class="text-center borderless" style="font-size: 2.5em;">' + tasksObj[key].number;
+						html += '</td>';
+
+						if (tasksObj[key].type == "D" || tasksObj[key].type == "N") { html += '<td class="text-center"><i class="bi bi-pencil" title="Do"></i></td>'; }
+						else if (tasksObj[key].type == "L") { html += '<td class="text-center"><i class="bi bi-eye" title="Learn"></i></td>'; }
+						html += '<td class="text-start borderless">';
+						if (tasksObj[key].status == "W") {
+							html += '<i class="bi bi-alarm"></i> ';
+						}
+						html += '<a href="http://www.buffalo.edu/" target="_blank">'; 
+						html +=	tasksObj[key].task;
+						html += '</a><div class="px-2 float-end" title="This task should take 1 hour"><i class="bi bi-clock"></i> 1 hour</div>';
+						html += '</td>';						
+						html += '<td class="text-center" title="Date/time due"><i class="bi bi-calendar-check" title="Date/time due"></i> ';
+						if (tasksObj[key].status == "W") { html += '<b>'; }
+						html += tasksObj[key].due;
+						if (tasksObj[key].status == "W") { html += '</b>'; }
+						html += '</td>'; */
+						
+						/* html += '<td class="text-center">';
+						if (tasksObj[key].type != "N") {
+							var checkInDisabled = "";
+							if (tasksObj[key].status == "O" || tasksObj[key].status == "L") { checkInDisabled = 'disabled'; }
+							var thisId = "check-in-call-" + tasksObj[key].number;
+							html += '<button' + ' id="' + thisId +'" ' + checkInDisabled + ' class="btn btn-primary" ' + 'type="button" ';
+							html += 'data-bs-toggle="collapse" data-bs-target="#' + questionId + '">';
+							html += '<i class="bi bi-check-circle"></i> Check in</button>';														
+							html += '</td>';
+						} else {
+							html += '<i class="bi bi-hand-thumbs-up" title="No need to check in for this task"></i>';
+						} */
+																
+						//html += '</tr>';
+						// Check question
+						/* var questionText = "What is the main idea of this unit?";
+						if (tasksObj[key].number % 2 == 0) { questionText = "What do the functions of planning, organizing, leading, and controlling represent?"; }
+						else if (tasksObj[key].number % 3 == 0) { questionText = "Which method of digital management would the author of this document support?"; }
+						
+						html += '<tr class="collapse" id="' + questionId + '"><td colspan="5">';
+						html += '<div><div class="card card-body"><form>';
+						html += '<div><b>Check question:</b><br />';
+						html += questionText;
+						html += '<div class="form-check"><input class="form-check-input" type="checkbox" value=""><label class="form-check-label" for="flexCheckChecked">Answer A</label></div>';
+						html += '<div class="form-check"><input class="form-check-input" type="checkbox" value=""><label class="form-check-label" for="flexCheckChecked">Answer B</label></div>';
+						html += '<div class="form-check"><input class="form-check-input" type="checkbox" value=""><label class="form-check-label" for="flexCheckChecked">Answer C</label></div>';
+						html += '</div>';
+						html += '<div><b>Was this unit of the course useful?</b><br />';
+						html += '<div class="form-check"><input class="form-check-input" type="radio" value=""><label class="form-check-label" for="flexCheckChecked">Yes</label></div>';
+						html += '<div class="form-check"><input class="form-check-input" type="radio" value=""><label class="form-check-label" for="flexCheckChecked">No</label></div>';
+						html += '<div>';								
+						html += '<div><b>Was the time estimate accurate?</b><br />';
+						html += '<div class="form-check"><input class="form-check-input" type="radio" value=""><label class="form-check-label" for="flexCheckChecked">Yes</label></div>';
+						html += '<div class="form-check"><input class="form-check-input" type="radio" value=""><label class="form-check-label" for="flexCheckChecked">No</label></div>';
+						html += '<div>';
+						html += '<div><b>Comments?</b><span style="font-size: small;" class="p-2"><i>100 characters max.</i></span><br /><input type="text" maxlength="100" size="55"></div>';
+						html += '<br />';
+
+						html += '<button type="button" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#'+ questionId + '">Cancel</button>';
+						html += '<span class="p-2"><button id="'+ tasksObj[key].number +'" type="button" class="btn btn-primary check-in-go" data-bs-toggle="collapse" data-bs-target="#' + questionId + '">Check In!</button></span>';
+						
+						html += '</form></div></div>';
+						html += '</td></tr>'; */
+					//}
+					//html += '</tbody>';
+	
+					document.getElementById('tasks-table-clean').innerHTML = html;
+					// End clean table
 			</script>
 
 			<script>
