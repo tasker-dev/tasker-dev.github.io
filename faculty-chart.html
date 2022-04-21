@@ -31,15 +31,11 @@
 			color: black;
 			}
 
-			.blue {
-			background: #13b4ff;
+			.green {
+			background: #33a532;
 			}
 
-			.purple {
-			background: #ab3fdd;
-			}
-
-			.wine {
+			.red {
 			background: #ae163e;
 			}
 
@@ -48,9 +44,9 @@
 			}
 
 			@-webkit-keyframes pulse-red {
-			0% { box-shadow:0 0 8px #ea4c89, inset 0 0 8px #ea4c89; }
-			50% { box-shadow:0 0 16px #ea4c89, inset 0 0 14px #ea4c89; }
-			100% { box-shadow:0 0 8px #ea4c89, inset 0 0 8px #ea4c89; }
+			0% { box-shadow:0 0 8px #ae163e, inset 0 0 8px #ae163e; }
+			50% { box-shadow:0 0 16px #ae163e, inset 0 0 14px #ae163e; }
+			100% { box-shadow:0 0 8px #ae163e, inset 0 0 8px #ae163e; }
 			}
 
 			.inner-red {
@@ -58,7 +54,7 @@
 			width:100px;
 			height:100px;
 			border-radius:50px;
-			box-shadow: 0 0 8px #ea4c89, inset 0 0 8px #ea4c89;
+			box-shadow: 0 0 8px #ae163e, inset 0 0 8px #ae163e;
 			-webkit-animation: pulse-red 2s linear 1s infinite;
 			margin-bottom: 15px;
 			}
@@ -69,8 +65,8 @@
 			font-family:sans-serif;
 			font-weight:100;
 			font-size:24px;
-			color: #ea4c89;
-			text-shadow: 0 0 4px #ea4c89;
+			color: #ae163e;
+			text-shadow: 0 0 4px #ae163e;
 			}
 
 			.inner-green {
@@ -166,15 +162,15 @@
 									<div class="p-2 flex-fill">
 										<div style="height: 160px;">
 											<br />
-											<b>John Adams did not complete the task</b>
+											<b>One (1) student failed the check question</b>
 										</div>
 										
 										<div style="height: 125px;">
-											<b>No (0) students attempted and failed the task</b>
+											<b>No (0) students are incomplete</b>
 										</div>
 										
 										<div style="height: 125px;">
-											<b>Six (6) students successfully completed the task</b>
+											<b>Six (6) students successfully completed</b>
 										</div>
 									</div>
 								</div>
@@ -268,28 +264,28 @@
 				if (selected == 2) {
 					for (let i = 1; i <= 2; i++) {
 						var id = elementId + i;
-						$(id).attr('class', 'box wine');
+						$(id).attr('class', 'box red');
 					}
 					for (let i = 3; i <= 6; i++) {
 						var id = elementId + i;
-						$(id).attr('class', 'box blue');
+						$(id).attr('class', 'box green');
 					}
 					for (let i = 7; i <= current; i++) {
 						var id = elementId + i;
-						$(id).attr('class', 'box wine');
+						$(id).attr('class', 'box red');
 					}
 					$("#problems").css("display", "block");
 				} else if (selected == 3) {
-					$("#block-1").attr('class', 'box wine');
+					$("#block-1").attr('class', 'box red');
 					for (let i = 2; i <= current; i++) {
 						var id = elementId + i;
-						$(id).attr('class', 'box blue');
+						$(id).attr('class', 'box green');
 					}
 					$("#suggestions").css("display", "block");
 				} else {
 					for (let i = 1; i <= current; i++) {
 						var id = elementId + i;
-						$(id).attr('class', 'box blue');
+						$(id).attr('class', 'box green');
 					}
 				}
 			}
